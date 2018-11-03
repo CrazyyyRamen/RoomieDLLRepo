@@ -58,7 +58,7 @@ namespace MongoRoomieDLL.BusinessDAO
 
         public List<City> GetCityByKeyword(string keyword)
         {
-            var cities = collection.AsQueryable<City>().Where(c => c.city_name.Contains(keyword)).ToList();
+            var cities = collection.AsQueryable<City>().Where(c => c.city_name.ToLower().Contains(keyword.ToLower())).ToList();
 
             return cities;
         }
