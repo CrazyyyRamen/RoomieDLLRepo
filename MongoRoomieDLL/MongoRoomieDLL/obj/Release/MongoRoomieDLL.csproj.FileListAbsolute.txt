@@ -1,0 +1,14 @@
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\MongoRoomieDLL.dll
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\MongoRoomieDLL.pdb
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\DnsClient.dll
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\MongoDB.Bson.dll
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\MongoDB.Driver.Core.dll
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\MongoDB.Driver.dll
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\System.Buffers.dll
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\DnsClient.xml
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\MongoDB.Bson.xml
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\MongoDB.Driver.xml
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\MongoDB.Driver.Core.xml
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\obj\Release\MongoRoomieDLL.dll
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\obj\Release\MongoRoomieDLL.pdb
