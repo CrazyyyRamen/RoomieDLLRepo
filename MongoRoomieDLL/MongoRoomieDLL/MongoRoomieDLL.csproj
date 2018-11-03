@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="BusinessDAO\CityDAO.cs" />
     <Compile Include="BusinessDAO\DAO.cs" />
+    <Compile Include="BusinessDAO\MemberAccountInfoDAO.cs" />
     <Compile Include="BusinessEntity\City.cs" />
     <Compile Include="BusinessEntity\Country.cs" />
     <Compile Include="BusinessEntity\CurrentAddress.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="BusinessEntity\Neighbourhood.cs" />
     <Compile Include="BusinessEntity\Province.cs" />
     <Compile Include="BusinessWorkFlow\CityWorkFlow.cs" />
+    <Compile Include="BusinessWorkFlow\MemberAccountInfoWorkFlow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

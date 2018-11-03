@@ -12,4 +12,3 @@ D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\MongoD
 D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Release\MongoDB.Driver.Core.xml
 D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\obj\Release\MongoRoomieDLL.dll
 D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\obj\Release\MongoRoomieDLL.pdb
-D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\obj\Release\MongoRoomieDLL.csprojResolveAssemblyReference.cache
