@@ -524,5 +524,107 @@
             <param name="id"></param>
             <returns>http response message with city id of which city was deleted</returns>
         </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.SearchMemberById(System.String)">
+            <summary>
+            Get member account information by id
+            </summary>
+            <param name="itxt"></param>
+            <returns>one member account infomation</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.SearchActiveMembersExcludeId(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Search all the members who may have or may not have places in a specified location
+            </summary>
+            <param name="itxt"></param>
+            <param name="offerPlace"></param>
+            <param name="neighbourhood"></param>
+            <param name="cityName"></param>
+            <param name="provinceCode"></param>
+            <param name="countryName"></param>
+            <returns>a list of members who currently have or don't ahave place in a specified location</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.SearchMemberByLocation(System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Get a specified number of members who are in a specified location
+            </summary>
+            <param name="count"></param>
+            <param name="neighbourhood"></param>
+            <param name="cityName"></param>
+            <param name="provinceCode"></param>
+            <param name="countryName"></param>
+            <returns>number of members who are in a specified location</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.SearchMemberByLoginInfo(MongoRoomieDLL.BusinessEntity.MemberAccountInfo)">
+            <summary>
+            check user login information
+            </summary>
+            <param name="userName"></param>
+            <param name="password"></param>
+            <returns>member information if user name and password match</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.SearchDuplicateEmail(System.String)">
+            <summary>
+            Check if email already exist in database
+            </summary>
+            <param name="email"></param>
+            <returns>true if email exist and vise versa</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.SearchUsedUserName(System.String)">
+            <summary>
+            Check if user name is unique
+            </summary>
+            <param name="userName"></param>
+            <returns>true if user name is unique and vise versa</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.AddOneMember(MongoRoomieDLL.BusinessEntity.MemberAccountInfo)">
+            <summary>
+            User signup process
+            </summary>
+            <param name="mai"></param>
+            <returns>responsed message with newly created member's email</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.UpdateMemberAccount(MongoRoomieDLL.BusinessEntity.MemberAccountInfo)">
+            <summary>
+            Update member account information
+            </summary>
+            <param name="mai"></param>
+            <returns>response message of updated member's email</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.RecordLoginDay(System.String,System.String)">
+            <summary>
+            Save user's login date
+            </summary>
+            <param name="itxt"></param>
+            <param name="loginDay"></param>
+            <returns>response message with id of whose login day</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.ActivateMember(System.String)">
+            <summary>
+            Activate member's account
+            </summary>
+            <param name="itxt"></param>
+            <returns>response message with id of whose account is activated</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.DectivateMember(System.String)">
+            <summary>
+            Deactivate user's account
+            </summary>
+            <param name="itxt"></param>
+            <returns>response message with id of whose account is deactivated</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.PendingMember(System.String)">
+            <summary>
+            User can pend their account by themselves if they no longer need the service
+            </summary>
+            <param name="itxt"></param>
+            <returns>response message with id of whose account was pending</returns>
+        </member>
+        <member name="M:MongoAPIV2.Controllers.MemberController.DeleteMember(System.String)">
+            <summary>
+            Delete member account
+            </summary>
+            <param name="itxt"></param>
+            <returns>response message with id of whose account is deleted</returns>
+        </member>
     </members>
 </doc>

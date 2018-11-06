@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace MongoAPIV2.Controllers
@@ -18,9 +19,10 @@ namespace MongoAPIV2.Controllers
         /// <returns>a list of cities in json format</returns>
         [Route("getcity")]
         [HttpGet]
-        public List<City> GetCity()
+        public async Task<List<City>> GetCity()
         {
-            return CityWorkFlow.GetAllCityList();
+            var allCities = await CityWorkFlow.GetAllCityList();
+            return allCities;
         }
 
         /// <summary>
@@ -32,7 +34,8 @@ namespace MongoAPIV2.Controllers
         [HttpGet]
         public List<City> SearchCityByKeyWord(string keyword)
         {
-            return CityWorkFlow.GetCityByKeyword(keyword);
+            var cityResult = CityWorkFlow.GetCityByKeyword(keyword);
+            return cityResult;
         }
 
         /// <summary>
@@ -46,11 +49,11 @@ namespace MongoAPIV2.Controllers
         /// <returns>http response message with city name added</returns>
         [Route("addonecity")]
         [HttpPost]
-        public HttpResponseMessage AddCity(string cityName, string provinceName, string provinceCode, string countryName, string countryCode)
+        public async Task<HttpResponseMessage> AddCity(string cityName, string provinceName, string provinceCode, string countryName, string countryCode)
         {
             try 
             {
-                CityWorkFlow.CreateOneCity(cityName, provinceName, provinceCode, countryName, countryCode);
+                await CityWorkFlow.CreateOneCity(cityName, provinceName, provinceCode, countryName, countryCode);
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, cityName);
                 message.Headers.Location = new Uri(Request.RequestUri + cityName);
@@ -76,11 +79,11 @@ namespace MongoAPIV2.Controllers
         /// <returns>http response message with number of cities updated and city id</returns>
         [Route("updateonecity")]
         [HttpPut]
-        public HttpResponseMessage Put(string id, string cityName, string provinceName, string provinceCode, string countryName, string countryCode)
+        public async Task<HttpResponseMessage> Put(string id, string cityName, string provinceName, string provinceCode, string countryName, string countryCode)
         {
             try
             {
-                long result = CityWorkFlow.UpdateCityById(id, cityName, provinceName, provinceCode, countryName, countryCode);
+                long result = await CityWorkFlow.UpdateCityById(id, cityName, provinceName, provinceCode, countryName, countryCode);
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, result);
                 message.Headers.Location = new Uri(Request.RequestUri + " city id: " + id.ToString());
@@ -100,11 +103,11 @@ namespace MongoAPIV2.Controllers
         /// <returns>http response message with city id of which city was deleted</returns>
         [Route("deleteonecity")]
         [HttpDelete]
-        public HttpResponseMessage DeleteCityById(string id)
+        public async Task<HttpResponseMessage> DeleteCityById(string id)
         {
             try
             {
-                long result = CityWorkFlow.DeleteCityById(id);
+                long result = await CityWorkFlow.DeleteCityById(id);
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, result);
                 message.Headers.Location = new Uri(Request.RequestUri + " city id: " + id.ToString());
