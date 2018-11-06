@@ -11,46 +11,46 @@ namespace MongoRoomieDLL.BusinessWorkFlow
     public static class MemberAccountInfoWorkFlow
     {
         #region insert / update / delete
-        public static void CreateMemberAccount(MemberAccountInfo mai)
+        public static async Task CreateMemberAccount(MemberAccountInfo mai)
         {
             MemberAccountInfoDAO maiDAO = new MemberAccountInfoDAO();
-            maiDAO.CreateMemberAccount(mai);
+            await maiDAO.CreateMemberAccount(mai);
         }
 
-        public static long UpdateMemberAccount(MemberAccountInfo mai)
+        public static async Task<long> UpdateMemberAccount(MemberAccountInfo mai)
         {
             MemberAccountInfoDAO maiDAO = new MemberAccountInfoDAO();
-            return maiDAO.UpdateMemberAccount(mai);
+            return await maiDAO.UpdateMemberAccount(mai);
         }
 
-        public static long RecordLoginDay(string id, string loginDay)
+        public static async Task<long> RecordLoginDay(string id, string loginDay)
         {
             MemberAccountInfoDAO maiDAO = new MemberAccountInfoDAO();
-            return maiDAO.RecordLoginDay(id, loginDay);
+            return await maiDAO.RecordLoginDay(id, loginDay);
         }
 
-        public static long ActivateAccount(string id)
+        public static async Task<long> ActivateAccount(string id)
         {
             MemberAccountInfoDAO maiDAO = new MemberAccountInfoDAO();
-            return maiDAO.ActivateAccount(id);
+            return await maiDAO.ActivateAccount(id);
         }
 
-        public static long DeactivateAccount(string id)
+        public static async Task<long> DeactivateAccount(string id)
         {
             MemberAccountInfoDAO maiDAO = new MemberAccountInfoDAO();
-            return maiDAO.DeactivateAccount(id);
+            return await maiDAO.DeactivateAccount(id);
         }
 
-        public static long PendingAccount(string id)
+        public static async Task<long> PendingAccount(string id)
         {
             MemberAccountInfoDAO maiDAO = new MemberAccountInfoDAO();
-            return maiDAO.PendingAccount(id);
+            return await maiDAO.PendingAccount(id);
         }
 
-        public static long DeleteMemberAccountById(string id)
+        public static async Task<long> DeleteMemberAccountById(string id)
         {
             MemberAccountInfoDAO maiDAO = new MemberAccountInfoDAO();
-            return maiDAO.DeleteMemberAccountById(id);
+            return await maiDAO.DeleteMemberAccountById(id);
         }
         #endregion
 

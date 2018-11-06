@@ -10,6 +10,6 @@ D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Debug\DnsClien
 D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Debug\MongoDB.Bson.xml
 D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Debug\MongoDB.Driver.xml
 D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\bin\Debug\MongoDB.Driver.Core.xml
-D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\obj\Debug\MongoRoomieDLL.csprojResolveAssemblyReference.cache
 D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\obj\Debug\MongoRoomieDLL.dll
 D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\obj\Debug\MongoRoomieDLL.pdb
+D:\Leisure time work\RoomieRepo\MongoRoomieDLL\MongoRoomieDLL\obj\Debug\MongoRoomieDLL.csprojResolveAssemblyReference.cache

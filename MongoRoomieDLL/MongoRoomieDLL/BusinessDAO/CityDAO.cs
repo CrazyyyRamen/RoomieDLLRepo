@@ -19,19 +19,19 @@ namespace MongoRoomieDLL.BusinessDAO
         }
 
         #region insert / update / delete
-        public void CreateOneCity(string cityName, string provinceName, string provinceCode, string countryName, string countryCode)
+        public async Task CreateOneCity(string cityName, string provinceName, string provinceCode, string countryName, string countryCode)
         {
             Province _province = new Province { province_code = provinceCode, province_name = provinceName };
             Country _country = new Country { country_code = countryCode, country_name = countryName };
 
             City city = new City { city_name = cityName, province = _province, country = _country };
 
-            collection.InsertOne(city);
+            await collection.InsertOneAsync(city);
         }
 
-        public long UpdateCityById(string id, string cityName, string provinceName, string provinceCode, string countryName, string countryCode)
+        public async Task<long> UpdateCityById(string id, string cityName, string provinceName, string provinceCode, string countryName, string countryCode)
         {
-            var result = collection.UpdateOne(Builders<City>.Filter.Eq("_id", ObjectId.Parse(id)), Builders<City>.Update.Set("city_name", cityName)
+            var result = await collection.UpdateOneAsync(Builders<City>.Filter.Eq("_id", ObjectId.Parse(id)), Builders<City>.Update.Set("city_name", cityName)
                                             .Set("province.province_name", provinceName)
                                             .Set("province.province_code", provinceCode)
                                             .Set("country.country_name", countryName)
@@ -40,18 +40,18 @@ namespace MongoRoomieDLL.BusinessDAO
             return result.ModifiedCount;
         }
 
-        public long DeleteCityById(string id)
+        public async Task<long> DeleteCityById(string id)
         {
-            var result = collection.DeleteOne(Builders<City>.Filter.Eq("_id", ObjectId.Parse(id)));
+            var result = await collection.DeleteOneAsync(Builders<City>.Filter.Eq("_id", ObjectId.Parse(id)));
             return result.DeletedCount;
         }
 
         #endregion
 
         #region select
-        public List<City> GetAllCityList()
+        public async Task<List<City>> GetAllCityList()
         {
-            var cities = collection.AsQueryable<City>().ToList();
+            var cities = await collection.AsQueryable<City>().ToListAsync();
 
             return cities;
         }

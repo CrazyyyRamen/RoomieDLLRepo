@@ -19,14 +19,14 @@ namespace MongoRoomieDLL.BusinessDAO
         }
 
         #region insert / update / delete
-        public void CreateMemberAccount(MemberAccountInfo mai)
+        public async Task CreateMemberAccount(MemberAccountInfo mai)
         {
-            collection.InsertOne(mai);
+            await collection.InsertOneAsync(mai);
         }
 
-        public long UpdateMemberAccount(MemberAccountInfo mai)
+        public async Task<long> UpdateMemberAccount(MemberAccountInfo mai)
         {
-            var result = collection.UpdateOne(Builders<MemberAccountInfo>.Filter.Eq("_id", mai._id), Builders<MemberAccountInfo>.Update
+            var result = await collection.UpdateOneAsync(Builders<MemberAccountInfo>.Filter.Eq("_id", mai._id), Builders<MemberAccountInfo>.Update
                                             .Set("user_name", mai.user_name)
                                             .Set("_email", mai._email)
                                             .Set("_birthday", mai._birthday)
@@ -53,37 +53,37 @@ namespace MongoRoomieDLL.BusinessDAO
             return result.ModifiedCount;
         }
 
-        public long RecordLoginDay(string id, string loginDay)
+        public async Task<long> RecordLoginDay(string id, string loginDay)
         {
-            var result = collection.UpdateOne(Builders<MemberAccountInfo>.Filter.Eq("_id", id), Builders<MemberAccountInfo>.Update.Set("login_day", loginDay));
+            var result = await collection.UpdateOneAsync(Builders<MemberAccountInfo>.Filter.Eq("_id", id), Builders<MemberAccountInfo>.Update.Set("login_day", loginDay));
 
             return result.ModifiedCount;
         }
 
-        public long ActivateAccount(string id)
+        public async Task<long> ActivateAccount(string id)
         {
-            var result = collection.UpdateOne(Builders<MemberAccountInfo>.Filter.Eq("_id", id), Builders<MemberAccountInfo>.Update.Set("account_status", "A"));
+            var result = await collection.UpdateOneAsync(Builders<MemberAccountInfo>.Filter.Eq("_id", id), Builders<MemberAccountInfo>.Update.Set("account_status", "A"));
 
             return result.ModifiedCount;
         }
 
-        public long DeactivateAccount(string id)
+        public async Task<long> DeactivateAccount(string id)
         {
-            var result = collection.UpdateOne(Builders<MemberAccountInfo>.Filter.Eq("_id", id), Builders<MemberAccountInfo>.Update.Set("account_status", "I"));
+            var result = await collection.UpdateOneAsync(Builders<MemberAccountInfo>.Filter.Eq("_id", id), Builders<MemberAccountInfo>.Update.Set("account_status", "I"));
 
             return result.ModifiedCount;
         }
 
-        public long PendingAccount(string id)
+        public async Task<long> PendingAccount(string id)
         {
-            var result = collection.UpdateOne(Builders<MemberAccountInfo>.Filter.Eq("_id", id), Builders<MemberAccountInfo>.Update.Set("account_status", "P"));
+            var result = await collection.UpdateOneAsync(Builders<MemberAccountInfo>.Filter.Eq("_id", id), Builders<MemberAccountInfo>.Update.Set("account_status", "P"));
 
             return result.ModifiedCount;
         }
 
-        public long DeleteMemberAccountById(string id)
+        public async Task<long> DeleteMemberAccountById(string id)
         {
-            var result = collection.DeleteOne(Builders<MemberAccountInfo>.Filter.Eq("_id", id));
+            var result = await collection.DeleteOneAsync(Builders<MemberAccountInfo>.Filter.Eq("_id", id));
             return result.DeletedCount;
         }
         #endregion
