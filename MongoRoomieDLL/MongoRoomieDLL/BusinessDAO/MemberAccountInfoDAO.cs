@@ -93,7 +93,7 @@ namespace MongoRoomieDLL.BusinessDAO
         {
             List<MemberAccountInfo> lstMember = new List<MemberAccountInfo>();
 
-            lstMember = collection.AsQueryable<MemberAccountInfo>().Where(m => m._id == id).ToList();
+            lstMember = collection.AsQueryable<MemberAccountInfo>().Where(m => m._id == ObjectId.Parse(id)).ToList();
 
             return lstMember;
         }
@@ -104,7 +104,7 @@ namespace MongoRoomieDLL.BusinessDAO
 
             if("N".Equals(offerPlace))
             {
-                lstMember = collection.AsQueryable<MemberAccountInfo>().Where(m => m._id != id && m.account_status == "A" 
+                lstMember = collection.AsQueryable<MemberAccountInfo>().Where(m => m._id != ObjectId.Parse(id) && m.account_status == "A" 
                                             && (m.interested_place[0].interested_neighbourhood == neighbourhood
                                             && m.interested_place[0].interested_city == cityName
                                             && m.interested_place[0].interested_province == provinceCode
@@ -113,7 +113,7 @@ namespace MongoRoomieDLL.BusinessDAO
             }
             else if("Y".Equals(offerPlace))
             {
-                lstMember = collection.AsQueryable<MemberAccountInfo>().Where(m => m._id != id && m.offer_place == "N" && m.account_status == "A" 
+                lstMember = collection.AsQueryable<MemberAccountInfo>().Where(m => m._id != ObjectId.Parse(id) && m.offer_place == "N" && m.account_status == "A" 
                                             && (m.interested_place[0].interested_neighbourhood == neighbourhood
                                             && m.interested_place[0].interested_city == cityName
                                             && m.interested_place[0].interested_province == provinceCode

@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace MongoRoomieDLL.BusinessEntity
     public class MemberAccountInfo
     {
         [BsonId]
-        public Object _id { get; set; }
+        public ObjectId _id { get; set; }
         [BsonElement("user_name")]
         public string user_name { get; set; }
         [BsonElement("_password")]
