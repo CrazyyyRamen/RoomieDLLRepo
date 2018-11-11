@@ -65,10 +65,10 @@ namespace MongoAPIV2.Controllers
         /// <param name="password"></param>
         /// <returns>member information if user name and password match</returns>
         [Route("memberlogin")]
-        [HttpGet]
-        public List<MemberAccountInfo> SearchMemberByLoginInfo([FromBody]MemberAccountInfo mai)
+        [HttpPost]
+        public List<MemberAccountInfo> SearchMemberByLoginInfo(MemberAccountInfo mai)
         {
-            return MemberAccountInfoWorkFlow.GetMemberAccountLoginInfo(mai.user_name, mai._password);
+            return MemberAccountInfoWorkFlow.GetMemberAccountLoginInfo(mai.user_name, UIHelper.EncryptDataMD5(mai._password));
         }
 
         /// <summary>
@@ -106,6 +106,7 @@ namespace MongoAPIV2.Controllers
         {
             try
             {
+                mai._password = UIHelper.EncryptDataMD5(mai._password);
                 await MemberAccountInfoWorkFlow.CreateMemberAccount(mai);
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, mai);
