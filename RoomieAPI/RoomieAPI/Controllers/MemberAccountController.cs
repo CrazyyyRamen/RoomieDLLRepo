@@ -19,8 +19,7 @@ namespace RoomieAPI.Controllers
         /// <summary>
         /// check user login information and generate token for validation
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
+        /// <param name="mai"></param>
         /// <returns>user token</returns>
         [Route("login")]
         [HttpPost]
