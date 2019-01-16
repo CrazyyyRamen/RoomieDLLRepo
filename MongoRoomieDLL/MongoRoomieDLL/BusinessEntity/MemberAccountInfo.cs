@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace MongoRoomieDLL.BusinessEntity
 {
+    /**
+     * This is an old version of member account class
+     * No longer used
+     * AccountInfo class is the newest version
+     * 
+     * **/
     public class MemberAccountInfo
     {
         [BsonId]

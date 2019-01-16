@@ -55,6 +55,36 @@ namespace RoomieAPI.Controllers
         }
 
         /// <summary>
+        /// Get cities based on name, province and country
+        /// </summary>
+        /// <param name="cityName"></param>
+        /// <param name="province"></param>
+        /// <param name="country"></param>
+        /// <returns>A city in a specified country</returns>
+        [Route("citybycityprovincecountry")]
+        [HttpGet]
+        [Authorize]
+        public IHttpActionResult SearchCityByCityNameAndProvinceAndCountry(string cityName, string province, string country)
+        {
+            List<City> lstCity = new List<City>();
+
+            try
+            {
+                lstCity = CityWorkFlow.GetCityByCityNameAndProvinceAndCountry(cityName, province, country);
+                return Ok(lstCity);
+            }
+            catch (Exception e)
+            {
+                var httpResponse = new HttpResponseMessage { };
+                IHttpActionResult response;
+
+                httpResponse.StatusCode = HttpStatusCode.Unauthorized;
+                response = ResponseMessage(httpResponse);
+                return response;
+            }
+        }
+
+        /// <summary>
         /// Create a new city 
         /// </summary>
         /// <param name="cityName"></param>

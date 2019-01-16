@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace MongoRoomieDLL.BusinessWorkFlow
 {
+    /**
+     * This is an old version of member account class data access layer
+     * No longer use
+     * 
+     * **/
     public static class MemberAccountInfoWorkFlow
     {
         #region insert / update / delete

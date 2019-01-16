@@ -13,7 +13,7 @@ namespace MongoRoomieDLL.BusinessEntity
         public Object _id { get; set; }
         [BsonElement("neighbourhood_name")]
         public string neighbourhood_name { get; set; }
-        [BsonElement("p_id")]
-        public string p_id { get; set; }
+        [BsonElement("c_id")]
+        public string c_id { get; set; }
     }
 }

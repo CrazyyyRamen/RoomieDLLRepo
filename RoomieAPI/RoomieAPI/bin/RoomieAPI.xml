@@ -494,6 +494,15 @@
             <param name="keyword"></param>
             <returns>a list of city with names contains keyword</returns>
         </member>
+        <member name="M:RoomieAPI.Controllers.CityController.SearchCityByCityNameAndProvinceAndCountry(System.String,System.String,System.String)">
+            <summary>
+            Get cities based on name, province and country
+            </summary>
+            <param name="cityName"></param>
+            <param name="province"></param>
+            <param name="country"></param>
+            <returns>A city in a specified country</returns>
+        </member>
         <member name="M:RoomieAPI.Controllers.CityController.AddCity(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Create a new city 
@@ -524,7 +533,7 @@
             <param name="id"></param>
             <returns>http response message with city id of which city was deleted</returns>
         </member>
-        <member name="M:RoomieAPI.Controllers.MemberAccountController.MemberAuthenticate(MongoRoomieDLL.BusinessEntity.MemberAccountInfo)">
+        <member name="M:RoomieAPI.Controllers.MemberAccountController.MemberAuthenticate(MongoRoomieDLL.BusinessEntity.AccountInfo)">
             <summary>
             check user login information and generate token for validation
             </summary>
@@ -543,7 +552,7 @@
             Search all the members who may have or may not have places in a specified location
             </summary>
             <param name="itxt"></param>
-            <param name="offerPlace"></param>
+            <param name="role"></param>
             <param name="neighbourhood"></param>
             <param name="cityName"></param>
             <param name="provinceCode"></param>
@@ -568,21 +577,14 @@
             <param name="email"></param>
             <returns>true if email exist and vise versa</returns>
         </member>
-        <member name="M:RoomieAPI.Controllers.MemberAccountController.SearchUsedUserName(System.String)">
-            <summary>
-            Check if user name is unique
-            </summary>
-            <param name="userName"></param>
-            <returns>true if user name is unique and vise versa</returns>
-        </member>
-        <member name="M:RoomieAPI.Controllers.MemberAccountController.AddOneMember(MongoRoomieDLL.BusinessEntity.MemberAccountInfo)">
+        <member name="M:RoomieAPI.Controllers.MemberAccountController.AddOneMember(MongoRoomieDLL.BusinessEntity.AccountInfo)">
             <summary>
             User signup process
             </summary>
             <param name="mai"></param>
             <returns>responsed message with newly created member's email</returns>
         </member>
-        <member name="M:RoomieAPI.Controllers.MemberAccountController.UpdateMemberAccount(MongoRoomieDLL.BusinessEntity.MemberAccountInfo)">
+        <member name="M:RoomieAPI.Controllers.MemberAccountController.UpdateMemberAccount(MongoRoomieDLL.BusinessEntity.AccountInfo)">
             <summary>
             Update member account information
             </summary>
@@ -611,7 +613,7 @@
             <param name="itxt"></param>
             <returns>response message with id of whose account is deactivated</returns>
         </member>
-        <member name="M:RoomieAPI.Controllers.MemberAccountController.PendingMember(System.String)">
+        <member name="M:RoomieAPI.Controllers.MemberAccountController.ArchiveMember(System.String)">
             <summary>
             User can pend their account by themselves if they no longer need the service
             </summary>

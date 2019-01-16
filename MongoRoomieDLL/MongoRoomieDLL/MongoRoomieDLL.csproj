@@ -64,17 +64,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessDAO\AccountInfoDAO.cs" />
     <Compile Include="BusinessDAO\CityDAO.cs" />
     <Compile Include="BusinessDAO\DAO.cs" />
     <Compile Include="BusinessDAO\MemberAccountInfoDAO.cs" />
+    <Compile Include="BusinessEntity\AccountInfo.cs" />
     <Compile Include="BusinessEntity\City.cs" />
     <Compile Include="BusinessEntity\Country.cs" />
     <Compile Include="BusinessEntity\CurrentAddress.cs" />
     <Compile Include="BusinessEntity\HomeStyle.cs" />
+    <Compile Include="BusinessEntity\IntendPlace.cs" />
     <Compile Include="BusinessEntity\InterestedPlace.cs" />
     <Compile Include="BusinessEntity\MemberAccountInfo.cs" />
     <Compile Include="BusinessEntity\Neighbourhood.cs" />
+    <Compile Include="BusinessEntity\Preference.cs" />
+    <Compile Include="BusinessEntity\Property.cs" />
+    <Compile Include="BusinessEntity\PropertyImage.cs" />
     <Compile Include="BusinessEntity\Province.cs" />
+    <Compile Include="BusinessWorkFlow\AccountInfoWorkFlow.cs" />
     <Compile Include="BusinessWorkFlow\CityWorkFlow.cs" />
     <Compile Include="BusinessWorkFlow\MemberAccountInfoWorkFlow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

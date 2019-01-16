@@ -42,6 +42,12 @@ namespace MongoRoomieDLL.BusinessWorkFlow
             CityDAO cityDAO = new CityDAO();
             return cityDAO.GetCityByKeyword(keyword);
         }
+
+        public static List<City> GetCityByCityNameAndProvinceAndCountry(string cityName, string province, string country)
+        {
+            CityDAO cityDAO = new CityDAO();
+            return cityDAO.GetCityByCityNameAndProvinceAndCountry(cityName, province, country);
+        }
         #endregion
     }
 }

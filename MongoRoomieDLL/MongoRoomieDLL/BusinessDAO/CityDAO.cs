@@ -62,6 +62,15 @@ namespace MongoRoomieDLL.BusinessDAO
 
             return cities;
         }
+
+        public List<City> GetCityByCityNameAndProvinceAndCountry(string cityName, string province, string country)
+        {
+            var cities = collection.AsQueryable<City>().Where(c => c.city_name == cityName
+                                                              && (c.province.province_code == province || c.province.province_name == province)
+                                                              && (c.country.country_code == country || c.country.country_name == country)).ToList();
+
+            return cities;
+        }
         #endregion
     }
 }

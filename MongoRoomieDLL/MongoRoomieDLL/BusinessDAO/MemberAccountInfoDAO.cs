@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace MongoRoomieDLL.BusinessDAO
 {
+    /**
+     * This is an old version of member account class data access layer
+     * No longer use
+     * 
+     * **/
     public class MemberAccountInfoDAO : DAO<MemberAccountInfo>
     {
         private string clusterName = "MemberAccountInfo";

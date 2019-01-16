@@ -23,10 +23,10 @@ namespace RoomieAPI.Controllers
         /// <returns>user token</returns>
         [Route("login")]
         [HttpPost]
-        public IHttpActionResult MemberAuthenticate([FromBody]MemberAccountInfo mai)
+        public IHttpActionResult MemberAuthenticate([FromBody]AccountInfo mai)
         {
             var loginResponse = new HttpResponseMessage { };
-            MemberAccountInfo memberAccountInfo = new MemberAccountInfo();
+            AccountInfo AccountInfo = new AccountInfo();
 
             IHttpActionResult response;
             HttpResponseMessage responseMsg = new HttpResponseMessage();
@@ -34,11 +34,11 @@ namespace RoomieAPI.Controllers
 
             if (mai != null)
             {
-                memberAccountInfo.user_name = mai.user_name;
-                memberAccountInfo._password = mai._password;
+                AccountInfo._email = mai._email;
+                AccountInfo._password = mai._password;
 
-                List<MemberAccountInfo> lstAccount = new List<MemberAccountInfo>();
-                lstAccount = MemberAccountInfoWorkFlow.GetMemberAccountLoginInfo(memberAccountInfo.user_name, UIHelperController.EncryptDataMD5(memberAccountInfo._password));
+                List<AccountInfo> lstAccount = new List<AccountInfo>();
+                lstAccount = AccountInfoWorkFlow.GetMemberAccountLoginInfo(AccountInfo._email, UIHelperController.EncryptDataMD5(AccountInfo._password));
 
                 if(lstAccount.Count > 0)
                 {
@@ -49,7 +49,7 @@ namespace RoomieAPI.Controllers
             // if credentials are valid
             if (isUsernamePasswordValid)
             {
-                string token = CreateToken(memberAccountInfo.user_name);
+                string token = CreateToken(AccountInfo._email);
                 //return the token
                 return Ok<string>(token);
             }
@@ -71,10 +71,10 @@ namespace RoomieAPI.Controllers
         [HttpGet]
         public IHttpActionResult SearchMemberById(string itxt)
         {
-            List<MemberAccountInfo> lstAccount = new List<MemberAccountInfo>();
+            List<AccountInfo> lstAccount = new List<AccountInfo>();
             try
             {
-                lstAccount = MemberAccountInfoWorkFlow.GetMemberById(itxt);
+                lstAccount = AccountInfoWorkFlow.GetMemberById(itxt);
                 return Ok(lstAccount);
             }
             catch(Exception e)
@@ -94,7 +94,7 @@ namespace RoomieAPI.Controllers
         /// Search all the members who may have or may not have places in a specified location
         /// </summary>
         /// <param name="itxt"></param>
-        /// <param name="offerPlace"></param>
+        /// <param name="role"></param>
         /// <param name="neighbourhood"></param>
         /// <param name="cityName"></param>
         /// <param name="provinceCode"></param>
@@ -103,12 +103,12 @@ namespace RoomieAPI.Controllers
         [Route("memberexceptself")]
         [HttpGet]
         [Authorize]
-        public IHttpActionResult SearchActiveMembersExcludeId(string itxt, string offerPlace, string neighbourhood, string cityName, string provinceCode, string countryName)
+        public IHttpActionResult SearchActiveMembersExcludeId(string itxt, string role, string neighbourhood, string cityName, string provinceCode, string countryName)
         {
-            List<MemberAccountInfo> lstAccount = new List<MemberAccountInfo>();
+            List<AccountInfo> lstAccount = new List<AccountInfo>();
             try
             {
-                lstAccount = MemberAccountInfoWorkFlow.GetActiveMemberAccountExcludeId(itxt, offerPlace, neighbourhood, cityName, provinceCode, countryName);
+                lstAccount = AccountInfoWorkFlow.GetActiveMemberAccountExcludeId(itxt, role, neighbourhood, cityName, provinceCode, countryName);
                 return Ok(lstAccount);
             }
             catch (Exception e)
@@ -135,10 +135,10 @@ namespace RoomieAPI.Controllers
         [HttpGet]
         public IHttpActionResult SearchMemberByLocation(int count, string neighbourhood, string cityName, string provinceCode, string countryName)
         {
-            List<MemberAccountInfo> lstAccount = new List<MemberAccountInfo>();
+            List<AccountInfo> lstAccount = new List<AccountInfo>();
             try
             {
-                lstAccount = MemberAccountInfoWorkFlow.GetActiveMemberAccountByLocation(count, neighbourhood, cityName, provinceCode, countryName);
+                lstAccount = AccountInfoWorkFlow.GetActiveMemberAccountByLocation(count, neighbourhood, cityName, provinceCode, countryName);
                 return Ok(lstAccount);
             }
             catch (Exception e)
@@ -165,37 +165,10 @@ namespace RoomieAPI.Controllers
 
             try
             {
-                isExisted = MemberAccountInfoWorkFlow.CheckEmail(email);
+                isExisted = AccountInfoWorkFlow.CheckEmail(email);
                 return Ok<bool>(isExisted);
             }
             catch(Exception e)
-            {
-                var httpResponse = new HttpResponseMessage { };
-                IHttpActionResult response;
-
-                httpResponse.StatusCode = HttpStatusCode.Unauthorized;
-                response = ResponseMessage(httpResponse);
-                return response;
-            }
-        }
-
-        /// <summary>
-        /// Check if user name is unique
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <returns>true if user name is unique and vise versa</returns>
-        [Route("checkusername")]
-        [HttpGet]
-        public IHttpActionResult SearchUsedUserName(string userName)
-        {
-            bool isExisted = false;
-
-            try
-            {
-                isExisted = MemberAccountInfoWorkFlow.CheckUserName(userName);
-                return Ok<bool>(isExisted);
-            }
-            catch (Exception e)
             {
                 var httpResponse = new HttpResponseMessage { };
                 IHttpActionResult response;
@@ -213,12 +186,12 @@ namespace RoomieAPI.Controllers
         /// <returns>responsed message with newly created member's email</returns>
         [Route("addonemember")]
         [HttpPost]
-        public async Task<HttpResponseMessage> AddOneMember([FromBody]MemberAccountInfo mai)
+        public async Task<HttpResponseMessage> AddOneMember([FromBody]AccountInfo mai)
         {
             try
             {
                 mai._password = UIHelperController.EncryptDataMD5(mai._password);
-                await MemberAccountInfoWorkFlow.CreateMemberAccount(mai);
+                await AccountInfoWorkFlow.CreateMemberAccount(mai);
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, mai);
                 message.Headers.Location = new Uri(Request.RequestUri + " added account: " + mai._email);
@@ -239,11 +212,11 @@ namespace RoomieAPI.Controllers
         /// <returns>response message of updated member's email</returns>
         [Route("updateonememberaccount")]
         [HttpPut]
-        public async Task<HttpResponseMessage> UpdateMemberAccount([FromBody]MemberAccountInfo mai)
+        public async Task<HttpResponseMessage> UpdateMemberAccount([FromBody]AccountInfo mai)
         {
             try
             {
-                long result = await MemberAccountInfoWorkFlow.UpdateMemberAccount(mai);
+                long result = await AccountInfoWorkFlow.UpdateMemberAccount(mai);
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, " modified: " + result.ToString());
                 message.Headers.Location = new Uri(Request.RequestUri + " account email: " + mai._email);
@@ -268,7 +241,7 @@ namespace RoomieAPI.Controllers
         {
             try
             {
-                long result = await MemberAccountInfoWorkFlow.RecordLoginDay(itxt, loginDay);
+                long result = await AccountInfoWorkFlow.RecordLoginDay(itxt, loginDay);
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, " modified: " + result.ToString());
                 message.Headers.Location = new Uri(Request.RequestUri + " saved login day for : " + itxt);
@@ -292,7 +265,7 @@ namespace RoomieAPI.Controllers
         {
             try
             {
-                long result = await MemberAccountInfoWorkFlow.ActivateAccount(itxt);
+                long result = await AccountInfoWorkFlow.ActivateAccount(itxt);
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, " modified: " + result.ToString());
                 message.Headers.Location = new Uri(Request.RequestUri + " activate for : " + itxt);
@@ -316,7 +289,7 @@ namespace RoomieAPI.Controllers
         {
             try
             {
-                long result = await MemberAccountInfoWorkFlow.DeactivateAccount(itxt);
+                long result = await AccountInfoWorkFlow.DeactivateAccount(itxt);
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, " modified: " + result.ToString());
                 message.Headers.Location = new Uri(Request.RequestUri + " deactivate for : " + itxt);
@@ -334,13 +307,13 @@ namespace RoomieAPI.Controllers
         /// </summary>
         /// <param name="itxt"></param>
         /// <returns>response message with id of whose account was pending</returns>
-        [Route("pendingaccount")]
+        [Route("archiveaccount")]
         [HttpPut]
-        public async Task<HttpResponseMessage> PendingMember(string itxt)
+        public async Task<HttpResponseMessage> ArchiveMember(string itxt)
         {
             try
             {
-                long result = await MemberAccountInfoWorkFlow.PendingAccount(itxt);
+                long result = await AccountInfoWorkFlow.ArchiveAccount(itxt);
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, " modified: " + result.ToString());
                 message.Headers.Location = new Uri(Request.RequestUri + " pending for : " + itxt);
@@ -364,7 +337,7 @@ namespace RoomieAPI.Controllers
         {
             try
             {
-                long result = await MemberAccountInfoWorkFlow.DeleteMemberAccountById(itxt);
+                long result = await AccountInfoWorkFlow.DeleteMemberAccountById(itxt);
 
                 var message = Request.CreateResponse(HttpStatusCode.Created, " deleted: " + result);
                 message.Headers.Location = new Uri(Request.RequestUri + " deleted for: " + itxt);
